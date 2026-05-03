@@ -1,55 +1,58 @@
-# MINI-PROJET
+# MINI-PROJET — Pipeline NLP
 
-**Module :** NLP — **Formation :** M1 AAI  
+**Module:** NLP — **Formation:** M1 AAI
 
-**Étudiants :** HAMMADOU Islem ; MOKEDDEM Akram  
+**Étudiant:** Boukhelkhal Chams Eldin
 
-**Enseignant :** Abdoun Nabil  
+**Enseignant:** Abdoun Nabil
 
 ---
 
-## Objectif
+## Présentation
 
-Ce dépôt contient un programme Python (`nlp_pipeline.py`) qui applique les étapes classiques du traitement du langage naturel sur un fichier texte **en anglais** : pré-traitement, statistiques de n-grammes, étiquetage morpho-syntaxique (POS), reconnaissance d’entités nommées, extraction de dates par expressions régulières, et consultation lexicale via WordNet (radical, lemme, définition, exemples, synonymes, antonymes).
+Ce dépôt contient un petit pipeline Python destiné au traitement de textes **en anglais**. Le programme réalise les étapes classiques suivantes : pré-traitement, calcul de n-grammes, étiquetage morpho-syntaxique (POS), reconnaissance d'entités nommées (NER), extraction de dates par expressions régulières, et consultation lexicale via WordNet (radical, lemme, définition, exemples, synonymes, antonymes).
 
 ## Prérequis
 
-- Python 3.8 ou supérieur  
-- Connexion Internet (premier lancement : téléchargement des ressources NLTK)
+- Python 3.8 ou supérieur
+- Connexion Internet (nécessaire au premier lancement pour télécharger les ressources NLTK)
 
 ## Installation
+
+Installez les dépendances :
 
 ```bash
 pip install -r req.txt
 ```
 
-## Exécution
+## Exécution (quick start)
+
+Lancez le script principal :
 
 ```bash
 python main.py
 ```
 
-Le script est **interactif** : il demande le chemin d’un fichier `.txt`, une liste optionnelle de stop-words supplémentaires, la valeur de **N** pour les n-grammes, puis un mot à analyser avec WordNet.
+Le script est interactif : il demande le chemin d'un fichier `.txt`, une liste optionnelle de stop-words supplémentaires, la valeur de **N** pour l'affichage des n-grammes, puis un mot à analyser via WordNet.
 
-Au premier lancement, NLTK peut prendre quelques minutes pour récupérer les modèles (tokenisation, POS, chunking NER, WordNet, etc.).
+Note : au premier lancement, NLTK téléchargera les modèles nécessaires (tokenizers, POS tagger, NER, WordNet, etc.). Cela peut prendre quelques minutes.
 
-## Fonctionnalités (résumé)
+## Fonctionnalités
 
-| Étape | Description |
-|--------|-------------|
-| Entrée | Fichier texte anglais choisi par l’utilisateur |
-| Pré-traitement | Segmentation en phrases, tokenisation, fréquences des mots (décroissant), filtrage des stop-words (liste NLTK + liste utilisateur) |
-| N-grammes | Top *N* uni-, bi- et trigrammes (sans stop-words) |
-| POS tagging | Étiquettes Penn Treebank via NLTK |
-| Entités nommées | `ne_chunk` (types NLTK : PERSON, ORGANIZATION, GPE, etc.) |
-| Dates | Plusieurs motifs regex (ISO, formats numériques, mois en toutes lettres, trimestres, etc.) |
-| Analyse lexicale | Porter (radical), lemmatisation WordNet, définition, exemples, synonymes, antonymes |
+- Entrée : fichier texte en anglais fourni par l'utilisateur
+- Pré-traitement : segmentation en phrases, tokenisation, calcul des fréquences de mots (ordre décroissant), filtrage des stop-words (liste NLTK + stop-words utilisateur)
+- N-grammes : affichage des top N uni-, bi- et trigrammes (exclusion des stop-words)
+- POS tagging : étiquettes Penn Treebank via NLTK
+- Named Entity Recognition (NER) : sortie basée sur `ne_chunk` (PERSON, ORGANIZATION, GPE, ...)
+- Extraction de dates : plusieurs motifs regex (ISO, formats numériques, mois en toutes lettres, trimestres, ...)
+- Analyse lexicale : radical (Porter), lemmatisation WordNet, définition, exemples, synonymes et antonymes
 
-## Fichiers du projet
+## Contenu du dépôt
 
-- `main.py` — script principal  
-- `req.txt` — dépendance `nltk`  
+- [main.py](main.py) — script principal
+- [req.txt](req.txt) — dépendances (ex. `nltk`)
 
-## Note
+## Remarques
 
-Les résultats du NER avec NLTK sont utiles à des fins pédagogiques ; pour une précision maximale en production, on peut compléter avec un outil comme spaCy.
+Les sorties NER fournies par NLTK sont intéressantes pour l'apprentissage et les expérimentations. Pour un usage en production nécessitant une meilleure précision, envisagez d'intégrer un moteur plus robuste comme spaCy.
+
